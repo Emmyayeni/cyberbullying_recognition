@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+database.db
+database.db-shm
+database.db-wal
+reports/*.png
+reports/*.json
+reports/*.txt
+data/*.csv
+!.gitkeep

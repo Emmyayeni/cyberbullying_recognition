@@ -1,0 +1,288 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Guest-8934",
+      "message": "you're an idiot",
+      "classification": "CYBERBULLYING",
+      "confidence": 0.6799999999999999,
+      "bullying_probability": 0.68,
+      "category": "Insult / Derogatory Attack",
+      "flagged_terms": [
+        "idiot"
+      ],
+      "blocked": 1,
+      "created_at": "2026-09-17T23:17:48.212Z"
+    },
+    {
+      "id": 2,
+      "sender": "Guest-8934",
+      "message": "hello y'all",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:18:21.340Z"
+    },
+    {
+      "id": 3,
+      "sender": "Guest-8934",
+      "message": "the guy a fucking black nigga",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:18:43.341Z"
+    },
+    {
+      "id": 4,
+      "sender": "Guest-8934",
+      "message": "yeah",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:18:53.779Z"
+    },
+    {
+      "id": 5,
+      "sender": "Guest-1292",
+      "message": "hey",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:19:32.907Z"
+    },
+    {
+      "id": 6,
+      "sender": "Guest-7457",
+      "message": "hey",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:20:19.920Z"
+    },
+    {
+      "id": 7,
+      "sender": "Guest-7457",
+      "message": "what going on y'all",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:20:44.076Z"
+    },
+    {
+      "id": 8,
+      "sender": "Guest-7457",
+      "message": "hello worlsd",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:23:54.303Z"
+    },
+    {
+      "id": 9,
+      "sender": "Guest-7457",
+      "message": "hey",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:25:42.057Z"
+    },
+    {
+      "id": 10,
+      "sender": "Guest-7457",
+      "message": "what's popping",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:26:13.618Z"
+    },
+    {
+      "id": 11,
+      "sender": "Guest-1292",
+      "message": "nothing",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:26:25.589Z"
+    },
+    {
+      "id": 12,
+      "sender": "Guest-1292",
+      "message": "okay",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:26:36.132Z"
+    },
+    {
+      "id": 13,
+      "sender": "Guest-7457",
+      "message": "yeah",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:26:43.606Z"
+    },
+    {
+      "id": 14,
+      "sender": "Guest-1292",
+      "message": "how is it going y'all",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:26:57.967Z"
+    },
+    {
+      "id": 15,
+      "sender": "Guest-7457",
+      "message": "nice what about you",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:27:16.464Z"
+    },
+    {
+      "id": 16,
+      "sender": "Guest-7457",
+      "message": "nice one",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-17T23:27:39.522Z"
+    },
+    {
+      "id": 17,
+      "sender": "Guest-7457",
+      "message": "hey",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:24:13.131Z"
+    },
+    {
+      "id": 18,
+      "sender": "Guest-9391",
+      "message": "hello",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:25:07.104Z"
+    },
+    {
+      "id": 19,
+      "sender": "Guest-7457",
+      "message": "hey wassup",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:25:28.055Z"
+    },
+    {
+      "id": 20,
+      "sender": "Guest-9391",
+      "message": "nice how are you're doing",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:25:47.420Z"
+    },
+    {
+      "id": 21,
+      "sender": "Guest-7457",
+      "message": "hey what the fuck are you doing here getout",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:26:26.054Z"
+    },
+    {
+      "id": 22,
+      "sender": "Guest-9391",
+      "message": "you're a fool",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T15:26:57.905Z"
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": 1,
+      "message_id": 1,
+      "alert_type": "Cyberbullying",
+      "status": "Pending",
+      "sender": "Guest-8934",
+      "message": "you're an idiot",
+      "classification": "CYBERBULLYING",
+      "confidence": 0.6799999999999999,
+      "bullying_probability": 0.68,
+      "category": "Insult / Derogatory Attack",
+      "flagged_terms": [
+        "idiot"
+      ],
+      "alert_created_at": "2026-09-17T23:17:48.212Z"
+    }
+  ]
+}

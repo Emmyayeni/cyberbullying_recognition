@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cyberbullying Incident Monitor & Admin</title>
+    <meta name="description" content="Administrator moderation dashboard and model management hub for AI Cyberbullying Safe Chat.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-modern.css') }}">
+</head>
+<body>
+    <main class="page-shell admin-shell">
+        <section class="dashboard-card" id="adminCard">
+            <!-- App Header -->
+            <header class="app-header">
+                <div class="header-brand">
+                    <div class="app-icon-wrap" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="eyebrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                            Safety Operations Center
+                        </span>
+                        <h1>Cyberbullying Incident Monitor</h1>
+                    </div>
+                </div>
+
+                <div class="header-nav">
+                    <button id="clearDataBtn" class="nav-btn" title="Reset all demo messages and alerts">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Clear Demo Data
+                    </button>
+                    <a id="exportCsvBtn" href="/api/admin/export" class="nav-btn" title="Export incident history as CSV">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export CSV
+                    </a>
+                    <a class="nav-btn primary" href="/">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Live Safe Chat
+                    </a>
+                </div>
+            </header>
+
+            <!-- Executive KPI Cards -->
+            <section class="admin-grid-top">
+                <article class="stat-kpi-card">
+                    <span class="kpi-label">Total Messages</span>
+                    <span class="kpi-value" id="totalMessages">0</span>
+                    <span class="kpi-subtext">Processed through AI pipeline</span>
+                </article>
+                <article class="stat-kpi-card safe">
+                    <span class="kpi-label">Safe Messages</span>
+                    <span class="kpi-value" id="safeMessages">0</span>
+                    <span class="kpi-subtext" id="safetyRateText">100% safety rate</span>
+                </article>
+                <article class="stat-kpi-card danger">
+                    <span class="kpi-label">Flagged Incidents</span>
+                    <span class="kpi-value" id="flaggedMessages">0</span>
+                    <span class="kpi-subtext" id="detectionRateText">0% detection rate</span>
+                </article>
+                <article class="stat-kpi-card primary">
+                    <span class="kpi-label">Pending Review</span>
+                    <span class="kpi-value" id="pendingAlerts">0</span>
+                    <span class="kpi-subtext">Requires human audit</span>
+                </article>
+            </section>
+
+            <!-- Activity Chart Trend Box -->
+            <section class="analytics-chart-box">
+                <div class="chart-header">
+                    <div>
+                        <span class="eyebrow">Real-Time Activity</span>
+                        <h3>Message Safety Distribution (Recent Volume)</h3>
+                    </div>
+                    <span class="threshold-badge">Threshold: <strong>{{ threshold }}%</strong></span>
+                </div>
+                <div class="svg-chart-container" id="activityChart">
+                    <!-- Dynamic chart bars injected via admin.js -->
+                </div>
+            </section>
+
+            <!-- Colab Model Management Hub -->
+            <details class="model-hub-panel model-settings">
+                <summary class="model-hub-header">
+                    <div>
+                        <span class="eyebrow">Machine Learning Engine</span>
+                        <h3>Model settings</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">
+                            View the active model or upload a trained Colab bundle.
+                        </p>
+                    </div>
+                    <span id="modelEngineBadge" class="status-pill baseline">
+                        <span class="status-dot"></span>
+                        <span id="modelEngineText">Checking...</span>
+                    </span>
+                </summary>
+
+                <div class="upload-dropzone" id="uploadDropzone">
+                    <input type="file" id="modelFileInput" accept=".pkl,.json,.zip" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p><strong>Click to browse</strong> or drag & drop Colab model file here</p>
+                    <span>Supports: cyberbullying_pipeline.pkl, model_metadata.json, or colab_model_bundle.zip</span>
+                </div>
+
+                <div class="model-meta-preview" id="modelMetaPreview">
+                    <div class="meta-item">
+                        <label>Active Engine</label>
+                        <span id="metaEngine">Baseline Heuristic Engine</span>
+                    </div>
+                    <div class="meta-item">
+                        <label>Model Architecture</label>
+                        <span id="metaArch">TF-IDF + Calibrated LinearSVC</span>
+                    </div>
+                    <div class="meta-item">
+                        <label>Validation F1-Score</label>
+                        <span id="metaF1">Pending Colab Train</span>
+                    </div>
+                    <div class="meta-item">
+                        <label>Validation Accuracy</label>
+                        <span id="metaAcc">Pending Colab Train</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Incident Review Station -->
+            <section class="incidents-section">
+                <div class="incidents-header">
+                    <div>
+                        <span class="eyebrow">Audit & Moderation Log</span>
+                        <h2>Incident Queue</h2>
+                    </div>
+                    <div class="action-row">
+                        <div class="filter-tabs" role="tablist">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="Pending">Pending</button>
+                            <button class="filter-btn" data-filter="Reviewed">Reviewed</button>
+                        </div>
+                        <button id="refreshBtn" class="nav-btn" title="Refresh dashboard data">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div class="alerts-grid" id="alertsGrid">
+                    <!-- Dynamically populated via admin.js -->
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "dataset_file": "cyberbullying_tweets.csv",
+  "task": "Binary cyberbullying detection",
+  "label_mapping": {
+    "SAFE": "not_cyberbullying",
+    "CYBERBULLYING": "all other cyberbullying_type values"
+  },
+  "model": "TF-IDF (1-2 grams) + calibrated LinearSVC",
+  "default_block_threshold": 0.77,
+  "note": "This metadata accompanies the pre-existing local model artifact. Run colab_model_training.ipynb to regenerate the model and evaluation metrics from the Kaggle CSV."
+}
