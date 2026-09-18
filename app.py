@@ -139,12 +139,16 @@ def classify_text(text: str):
     if _model is not None:
         try:
             prob = float(_model.predict_proba([text])[0][1])
-            blocked = prob >= BLOCK_THRESHOLD
+            heuristic = baseline_heuristic_classify(text, threshold=BLOCK_THRESHOLD)
+            blocked = prob >= BLOCK_THRESHOLD or heuristic["blocked"]
+            effective_probability = max(prob, heuristic["bullying_probability"])
             flagged = extract_flagged_terms(text)
 
             category = "Safe"
             if blocked:
-                category = "Severe Threat / Harassment" if prob > 0.8 else "Cyberbullying / Insult"
+                category = heuristic.get("category", "Cyberbullying / Insult") if heuristic["blocked"] else (
+                    "Severe Threat / Harassment" if effective_probability > 0.8 else "Cyberbullying / Insult"
+                )
 
             nudge = (
                 "Warning: This message was detected as cyberbullying and will be blocked."
@@ -154,8 +158,8 @@ def classify_text(text: str):
 
             return {
                 "classification": "CYBERBULLYING" if blocked else "SAFE",
-                "confidence": round(prob if blocked else (1.0 - prob), 4),
-                "bullying_probability": round(prob, 4),
+                "confidence": round(effective_probability if blocked else (1.0 - effective_probability), 4),
+                "bullying_probability": round(effective_probability, 4),
                 "blocked": blocked,
                 "category": category,
                 "flagged_terms": flagged,

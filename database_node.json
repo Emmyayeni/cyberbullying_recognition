@@ -265,6 +265,78 @@
       "flagged_terms": [],
       "blocked": 0,
       "created_at": "2026-09-18T15:26:57.905Z"
+    },
+    {
+      "id": 23,
+      "sender": "Guest-7457",
+      "message": "you're a fool",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:05:26.202Z"
+    },
+    {
+      "id": 24,
+      "sender": "Guest-7457",
+      "message": "get the fuck out of here idoit",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:05:47.390Z"
+    },
+    {
+      "id": 25,
+      "sender": "Guest-7457",
+      "message": "you're a fool",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:07:19.015Z"
+    },
+    {
+      "id": 26,
+      "sender": "Guest-7457",
+      "message": "you fucking nigga",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:09:21.645Z"
+    },
+    {
+      "id": 27,
+      "sender": "Guest-7457",
+      "message": "you fucking nigga",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:09:42.710Z"
+    },
+    {
+      "id": 28,
+      "sender": "Guest-7457",
+      "message": "you fuccking nigga",
+      "classification": "SAFE",
+      "confidence": 0.95,
+      "bullying_probability": 0.05,
+      "category": "Safe",
+      "flagged_terms": [],
+      "blocked": 0,
+      "created_at": "2026-09-18T17:11:50.751Z"
     }
   ],
   "alerts": [
