@@ -9,3 +9,7 @@ reports/*.json
 reports/*.txt
 data/*.csv
 !.gitkeep
+.env
+~$*
+*.log
+

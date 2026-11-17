@@ -125,3 +125,22 @@ BLOCK_THRESHOLD=0.65 python app.py
 ```
 
 Raising the threshold generally blocks fewer messages (higher precision, lower recall); lowering it generally blocks more messages (higher recall, potentially more false positives).
+
+## Free Cloud Deployment (Render)
+
+This repository includes a `Procfile` and `render.yaml` configured with multithreaded Gunicorn for handling real-time Server-Sent Events (SSE).
+
+1. Push your changes to GitHub:
+   ```bash
+   git add .
+   git commit -m "Configure production deployment for Render"
+   git push origin main
+   ```
+2. Go to [render.com](https://render.com) and log in.
+3. Click **New +** -> **Web Service** (or **Blueprint**).
+4. Connect this repository (`Emmyayeni/cyberbullying_recognition`).
+5. Render detects `render.yaml` automatically:
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn --worker-class gthread --threads 8 --workers 1 --bind 0.0.0.0:$PORT app:app`
+6. Click **Create Web Service**. Your live chat URL will be live in 2-3 minutes.
+

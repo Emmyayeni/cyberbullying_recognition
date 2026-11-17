@@ -8,6 +8,12 @@ import threading
 import zipfile
 from pathlib import Path
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 import joblib
 from flask import Flask, Response, jsonify, render_template, request
 from werkzeug.utils import secure_filename
@@ -44,6 +50,7 @@ MIN_NAME_LENGTH = 2
 MAX_NAME_LENGTH = 30
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", secrets.token_hex(24))
 app.config["JSON_SORT_KEYS"] = False
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50MB for model uploads
 

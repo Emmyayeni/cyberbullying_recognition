@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cyberbullying-ai-safe-chat
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --worker-class gthread --threads 8 --workers 1 --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: BLOCK_THRESHOLD
+        value: 0.77
+      - key: SECRET_KEY
+        generateValue: true
