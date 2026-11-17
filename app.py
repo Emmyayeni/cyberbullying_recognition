@@ -1,6 +1,8 @@
 import csv
+import __main__
 import io
 import json
+import logging
 import os
 import queue
 import secrets
@@ -35,6 +37,8 @@ from ml_utils import (
     highlight_flagged_terms,
 )
 
+logger = logging.getLogger(__name__)
+
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_DIR = BASE_DIR / "model"
 MODEL_PATH = MODEL_DIR / "cyberbullying_pipeline.pkl"
@@ -53,6 +57,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", secrets.token_hex(24))
 app.config["JSON_SORT_KEYS"] = False
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50MB for model uploads
+app.config["ALLOW_MODEL_UPLOAD"] = os.getenv("ALLOW_MODEL_UPLOAD", "0") == "1"
 
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 init_db()
@@ -103,6 +108,9 @@ def load_model_pipeline():
     model_path = next((candidate for candidate in MODEL_CANDIDATES if candidate.exists()), None)
     if model_path is not None:
         try:
+            # The Colab artifact was serialized with the notebook's __main__.clean_text.
+            # Register the identical production helper before unpickling it.
+            __main__.clean_text = clean_text
             _model = joblib.load(model_path)
             _model_source = "colab_pipeline"
             _loaded_model_path = model_path
@@ -114,10 +122,13 @@ def load_model_pipeline():
                     "model": "Colab Scikit-Learn Pipeline",
                     "status": "Loaded",
                 }
-            print(f"[AI Moderator] Successfully loaded ML pipeline from: {model_path}")
+            logger.info("Loaded ML pipeline from %s", model_path)
             return _model
         except Exception as e:
-            print(f"[AI Moderator] Warning: Failed to load pipeline file ({e}). Falling back to baseline engine.")
+            logger.exception(
+                "Failed to load ML pipeline from %s; falling back to baseline engine",
+                model_path,
+            )
             _model = None
             _model_source = "heuristic"
             _model_metadata = None
@@ -174,7 +185,7 @@ def classify_text(text: str):
                 "model_engine": "Colab Trained Pipeline (Calibrated LinearSVC)",
             }
         except Exception as e:
-            print(f"[AI Moderator] Pipeline inference error: {e}. Falling back to baseline.")
+            logger.exception("ML pipeline inference failed; falling back to baseline engine")
 
     # 2. Fallback Heuristic Classifier (operates while training on Colab)
     result = baseline_heuristic_classify(text, threshold=BLOCK_THRESHOLD)
@@ -228,6 +239,9 @@ def model_info():
 @app.post("/api/model/upload")
 def upload_model():
     """Accepts uploaded .pkl model or .zip bundle exported from Colab."""
+    if not app.config["ALLOW_MODEL_UPLOAD"]:
+        return jsonify({"error": "Runtime model uploads are disabled."}), 403
+
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded."}), 400
 
@@ -492,7 +506,7 @@ def export_csv():
 
 if __name__ == "__main__":
     app.run(
-        host=os.getenv("HOST", "127.0.0.1"),
-        port=int(os.getenv("PORT", "5000")),
+        host=os.getenv("HOST", "0.0.0.0"),
+        port=int(os.getenv("PORT", "7860")),
         debug=os.getenv("FLASK_DEBUG", "0") == "1",
     )
